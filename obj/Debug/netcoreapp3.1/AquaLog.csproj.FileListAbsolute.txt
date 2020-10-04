@@ -35,4 +35,4 @@ C:\users\portl\Source\Repos\AquaLog\obj\Debug\netcoreapp3.1\AquaLog.csproj.CopyC
 C:\Users\portl\Source\Repos\AquaLog\obj\Debug\netcoreapp3.1\AquaLog.csproj.CoreCompileInputs.cache
 C:\Users\portl\Source\Repos\AquaLog\obj\Debug\netcoreapp3.1\AquaLog.genruntimeconfig.cache
 C:\Users\portl\Source\Repos\AquaLog\obj\Debug\netcoreapp3.1\Razor\Pages\LogEntry.cshtml.g.cs
-C:\Users\portl\Source\Repos\AquaLog\obj\Debug\netcoreapp3.1\Razor\Pages\Aquariums.cshtml.g.cs
+C:\Users\portl\Source\Repos\AquaLog\obj\Debug\netcoreapp3.1\Razor\Pages\AquariumList.cshtml.g.cs

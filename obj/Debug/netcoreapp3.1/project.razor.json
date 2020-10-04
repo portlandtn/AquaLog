@@ -14392,11 +14392,6 @@
   "RootNamespace": "AquaLog",
   "Documents": [
     {
-      "FilePath": "c:\\Users\\portl\\Source\\Repos\\AquaLog\\Pages\\Aquariums.cshtml",
-      "TargetPath": "Pages\\Aquariums.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\portl\\Source\\Repos\\AquaLog\\Pages\\LogEntry.cshtml",
       "TargetPath": "Pages\\LogEntry.cshtml",
       "FileKind": "mvc"
@@ -14429,6 +14424,11 @@
     {
       "FilePath": "c:\\Users\\portl\\Source\\Repos\\AquaLog\\Pages\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Pages\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\portl\\Source\\Repos\\AquaLog\\Pages\\AquariumList.cshtml",
+      "TargetPath": "Pages\\AquariumList.cshtml",
       "FileKind": "mvc"
     }
   ],

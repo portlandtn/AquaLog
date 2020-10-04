@@ -1,0 +1,38 @@
+﻿@page
+@model AquariumList
+@{
+    ViewData["Title"] = "Aquariums";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class = "form-control" value = "" asp-for="SearchTerm"/>
+            <span class="input-group-btn">
+                <button class = "btn btn-primary btn-default">
+                    Search
+                </button>
+            </span>
+        </div>
+    </div>
+</form>
+
+<table class = "table">
+        <tr>
+            <th>Name</th>
+            <th>Capacity</th>
+            <th>Type</th>
+            <th>Description</th>
+        </tr>
+    @foreach (var aquarium in Model.Aquariums)
+    {
+        <tr>
+            <td>@aquarium.Name</td>
+            <td>@aquarium.Capacity gallon</td>
+            @{string type = aquarium.Freshwater ? "Freshwater" : "Saltwater";}
+            <td>@type</td>
+            <td>@aquarium.Description</td>
+        </tr>
+    }
+</table>
