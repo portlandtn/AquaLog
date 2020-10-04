@@ -33,6 +33,10 @@
             @{string type = aquarium.Freshwater ? "Freshwater" : "Saltwater";}
             <td>@type</td>
             <td>@aquarium.Description</td>
+            <td>
+                <a class="btn btn-primary"
+                asp-page="./AquariumDetails" asp-route-aquariumId="@aquarium.Id">Details</a>
+            </td>
         </tr>
     }
 </table>

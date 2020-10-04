@@ -14397,6 +14397,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\portl\\Source\\Repos\\AquaLog\\Pages\\Aquariums\\AquariumList.cshtml",
+      "TargetPath": "Pages\\Aquariums\\AquariumList.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\portl\\Source\\Repos\\AquaLog\\Pages\\Error.cshtml",
       "TargetPath": "Pages\\Error.cshtml",
       "FileKind": "mvc"
@@ -14427,8 +14432,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\portl\\Source\\Repos\\AquaLog\\Pages\\AquariumList.cshtml",
-      "TargetPath": "Pages\\AquariumList.cshtml",
+      "FilePath": "c:\\Users\\portl\\Source\\Repos\\AquaLog\\Pages\\Aquariums\\AquariumDetails.cshtml",
+      "TargetPath": "Pages\\Aquariums\\AquariumDetails.cshtml",
       "FileKind": "mvc"
     }
   ],

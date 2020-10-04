@@ -23,5 +23,10 @@ namespace AquaLog.Data
                 orderby a.Name
                 select a;
         }
+
+        public Aquarium GetById(int id)
+        {
+            return aquariums.SingleOrDefault(r => r.Id == id);
+        }
     }
 }
