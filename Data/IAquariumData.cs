@@ -5,7 +5,9 @@ namespace AquaLog.Data
 {
     public interface IAquariumData
     {
-         IEnumerable<Aquarium> GetAquariumsByName(string name);
+        IEnumerable<Aquarium> GetAquariumsByName(string name);
         Aquarium GetById(int id);
+        Aquarium Update(Aquarium updatedAquarium);
+        int Commit();
     }
 }

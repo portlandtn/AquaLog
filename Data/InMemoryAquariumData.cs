@@ -16,6 +16,12 @@ namespace AquaLog.Data
                 new Aquarium {Id = 2, Name = "Big Saltwater", Capacity = 55, Freshwater = false, Description = "55 Gallon tank with the trigger shrimp" }
             };
         }
+
+        public int Commit()
+        {
+            return 0;
+        }
+
         public IEnumerable<Aquarium> GetAquariumsByName(string name)
         {
             return from a in aquariums
@@ -27,6 +33,19 @@ namespace AquaLog.Data
         public Aquarium GetById(int id)
         {
             return aquariums.SingleOrDefault(r => r.Id == id);
+        }
+
+        public Aquarium Update(Aquarium updatedAquarium)
+        {
+            var aquarium = aquariums.SingleOrDefault(a => a.Id == updatedAquarium.Id);
+            if (aquarium != null)
+            {
+                aquarium.Name = updatedAquarium.Name;
+                aquarium.Capacity = updatedAquarium.Capacity;
+                aquarium.Freshwater = updatedAquarium.Freshwater;
+                aquarium.Description = updatedAquarium.Description;
+            }
+            return aquarium;
         }
     }
 }

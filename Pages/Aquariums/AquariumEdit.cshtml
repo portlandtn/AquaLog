@@ -1,0 +1,33 @@
+﻿@page "{aquariumId:int}"
+
+@model AquariumEdit
+@{
+    ViewData["Title"] = "Editing " + Model.Aquarium.Name;
+}
+<h1>Editing @Model.Aquarium.Name</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Aquarium.Id" />
+    <div class="form-group">
+        <label asp-for="Aquarium.Name"></label>
+        <input asp-for="Aquarium.Name" class="form-control" />
+    </div>
+        <div class="form-group">
+        <label asp-for="Aquarium.Capacity">Capacity (Gallons)</label>
+        <input asp-for="Aquarium.Capacity" class="form-control" />
+    </div>
+        <div class="form-group">
+        <label asp-for="Aquarium.Freshwater">Type</label>
+        <select class="form-control" asp-for="Aquarium.Freshwater">
+            <option value="True">Freshwater</option>
+            <option value="False">Saltwater</option>
+        </select>
+
+    </div>
+        <div class="form-group">
+        <label asp-for="Aquarium.Description"></label>
+        <input asp-for="Aquarium.Description" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
