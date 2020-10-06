@@ -8,6 +8,7 @@ namespace AquaLog.Data
         IEnumerable<Aquarium> GetAquariumsByName(string name);
         Aquarium GetById(int id);
         Aquarium Update(Aquarium updatedAquarium);
+        Aquarium Add(Aquarium newAquarium);
         int Commit();
     }
 }

@@ -1,4 +1,4 @@
-﻿@page "{aquariumId:int}"
+﻿@page "{aquariumId:int?}"
 
 @model AquariumEdit
 @{
@@ -11,20 +11,21 @@
     <div class="form-group">
         <label asp-for="Aquarium.Name"></label>
         <input asp-for="Aquarium.Name" class="form-control" />
+        <span class="text-danger" asp-validation-for="Aquarium.Name"></span>
     </div>
-        <div class="form-group">
+    <div class="form-group">
         <label asp-for="Aquarium.Capacity">Capacity (Gallons)</label>
         <input asp-for="Aquarium.Capacity" class="form-control" />
+        <span class="text-danger" asp-validation-for="Aquarium.Capacity"></span>
     </div>
-        <div class="form-group">
+    <div class="form-group">
         <label asp-for="Aquarium.Freshwater">Type</label>
         <select class="form-control" asp-for="Aquarium.Freshwater">
             <option value="True">Freshwater</option>
             <option value="False">Saltwater</option>
         </select>
-
     </div>
-        <div class="form-group">
+    <div class ="form-group">
         <label asp-for="Aquarium.Description"></label>
         <input asp-for="Aquarium.Description" class="form-control" />
     </div>

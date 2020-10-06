@@ -14,6 +14,8 @@ namespace AquaLog.Pages
     {
         private readonly ILogger<AquariumDetails> _logger;
         private readonly IAquariumData _aquariumData;
+        [TempData]
+        public string Message { get; set; }
 
         public Aquarium Aquarium { get; set; }
 

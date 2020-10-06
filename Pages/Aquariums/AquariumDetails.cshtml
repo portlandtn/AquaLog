@@ -4,12 +4,16 @@
 @{
     ViewData["Title"] = "Aquariums";
 }
+@if(Model.Message != null)
+{
+    <div class="alert- alert-info">@Model.Message</div>
+}
 <h1>@Model.Aquarium.Name</h1>
 <div>
 
 </div>
 <div>
-    Capacity: @Model.Aquarium.Capacity
+    Capacity (Gallons): @Model.Aquarium.Capacity
 </div>
 <div>
     @{var type = Model.Aquarium.Freshwater ? "Freshwater" : "Saltwater"; }

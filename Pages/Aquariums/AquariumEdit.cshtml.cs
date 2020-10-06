@@ -20,10 +20,16 @@ namespace AquaLog.Pages
             _aquariumData = aquariumData;
         }
 
-        public IActionResult OnGet(int aquariumId)
-        {   
-
-            Aquarium = _aquariumData.GetById(aquariumId);
+        public IActionResult OnGet(int? aquariumId)
+        {
+            if (aquariumId.HasValue)
+            {
+                Aquarium = _aquariumData.GetById(aquariumId.Value);
+            }
+            else
+            {
+                Aquarium = new Aquarium();
+            }
             if (Aquarium == null)
             {
                 RedirectToPage("../Error");
@@ -32,9 +38,22 @@ namespace AquaLog.Pages
         }
         public IActionResult OnPost()
         {
-            Aquarium = _aquariumData.Update(Aquarium);
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            if (Aquarium.Id > 0)
+            {
+                _aquariumData.Update(Aquarium);
+            }
+            else
+            {
+                _aquariumData.Add(Aquarium);
+            }
             _aquariumData.Commit();
-            return Page();
+            TempData["Message"] = "Aquarium saved!";
+            return RedirectToPage("./AquariumDetails", new { aquariumId = Aquarium.Id }); // Post-Redirect-Get pattern to avoid refreshing a post
         }
 
     }

@@ -17,6 +17,13 @@ namespace AquaLog.Data
             };
         }
 
+        public Aquarium Add(Aquarium newAquarium)
+        {
+            aquariums.Add(newAquarium);
+            newAquarium.Id = aquariums.Max(a => a.Id + 1);
+            return newAquarium;
+        }
+
         public int Commit()
         {
             return 0;
