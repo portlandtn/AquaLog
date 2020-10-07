@@ -1,0 +1,20 @@
+﻿@page "{logId:int}"
+
+@model LogDetails
+@{
+    ViewData["Title"] = "Log";
+}
+@if(Model.Message != null)
+{
+    <div class="alert- alert-info">@Model.Message</div>
+}
+<h1>@Model.Log.Id</h1>
+<div>
+
+</div>
+<div>
+    Date: @Model.Log.Date
+</div>
+<div>
+    Notes: @Model.Log.Notes
+</div>

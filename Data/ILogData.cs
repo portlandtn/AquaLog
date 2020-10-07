@@ -7,6 +7,7 @@ namespace AquaLog.Data
     public interface ILogData
     {
         IEnumerable<Log> GetLogsByDateRange(DateTime startDate, DateTime endDate);
+        IEnumerable<Log> GetAllLogs();
         Log GetById(int id);
         Log Update(Log updatedLog);
         Log Add(Log newLog);

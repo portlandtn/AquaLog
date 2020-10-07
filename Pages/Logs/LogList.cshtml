@@ -1,0 +1,30 @@
+﻿@page
+@model LogList
+@{
+    ViewData["Title"] = "Logs";
+}
+<h1>@ViewData["Title"]</h1>
+
+<table class = "table">
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Notes</th>
+        </tr>
+    @foreach (var log in Model.Logs)
+    {
+        <tr>
+            <td>@log.Id</td>
+            <td>@log.Date</td>
+            <td>@log.Notes</td>
+            <td>
+                <a class="btn btn-primary"
+                asp-page="./LogDetails" asp-route-logId="@log.Id">Details</a>
+                <a class="btn btn-primary"
+                asp-page="./LogEdit" asp-route-logId="@log.Id">Edit</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<a asp-page = "./LogEdit" class = "btn btn-primary">Add New</a>

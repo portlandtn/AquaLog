@@ -1,0 +1,23 @@
+﻿@page "{logId:int?}"
+
+@model LogEdit
+@{
+    ViewData["Title"] = "Editing " + Model.Log.Id;
+}
+<h1>Editing @Model.Log.Id</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Log.Id" />
+    <div class="form-group">
+        <label asp-for="Log.Date"></label>
+        <input asp-for="Log.Date" class="form-control" />
+        <span class="text-danger" asp-validation-for="Log.Date"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Log.Notes">Capacity (Gallons)</label>
+        <input asp-for="Log.Notes" class="form-control" />
+        <span class="text-danger" asp-validation-for="Log.Notes"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+

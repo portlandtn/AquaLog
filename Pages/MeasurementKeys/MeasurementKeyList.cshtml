@@ -1,0 +1,54 @@
+﻿@page
+@model MeasurementKeyList
+@{
+    ViewData["Title"] = "Measurement Keys";
+}
+<h1>@ViewData["Title"]</h1>
+
+<form method="get">
+    <div class="form-group">
+        <div class="input-group">
+            <input type="search" class = "form-control" value = "" asp-for="SearchTerm"/>
+            <span class="input-group-btn">
+                <button class = "btn btn-primary btn-default">
+                    Search
+                </button>
+            </span>
+        </div>
+    </div>
+</form>
+
+<table class = "table">
+        <tr>
+            <th>Name</th>
+            <th>Applicable To Freshwater</th>
+            <th>Applicable To Saltwater</th>
+            <th>Highest Possible Value</th>
+            <th>Lowest Possible Value</th>
+            <th>Ideal Value</th>
+        </tr>
+    @foreach (var measurementKey in Model.MeasurementKeys)
+    {
+        <tr>
+            <td>@measurementKey.Name</td>
+            
+            @{string applicableToFreshwater = measurementKey.ApplicableToFreshwater ? "Yes" : "No";}
+            <td>@applicableToFreshwater</td>
+
+            @{string applicableToSaltwater = measurementKey.ApplicableToSaltwater ? "Yes" : "No";}
+            <td>@applicableToSaltwater</td>
+
+            <td>@measurementKey.HighRange</td>
+            <td>@measurementKey.LowRange</td>
+            <td>@measurementKey.IdealLevel</td>
+            <td>
+                <a class="btn btn-primary"
+                asp-page="./MeasurementKeyDetails" asp-route-measurementKeyId="@measurementKey.Id">Details</a>
+                <a class="btn btn-primary"
+                asp-page="./MeasurementKeyEdit" asp-route-measurementKeyId="@measurementKey.Id">Edit</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<a asp-page = "./MeasurementKeyEdit" class = "btn btn-primary">Add New</a>

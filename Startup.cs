@@ -30,6 +30,8 @@ namespace AquaLog
                 options.UseSqlServer(Configuration["AquaLog:ConnectionString"]);
             });
             services.AddScoped<IAquariumData, SqlAquariumData>();
+            services.AddScoped<IMeasurementKeyData, SqlMeasurementKeyData>();
+            services.AddScoped<ILogData, SqlLogData>();
             services.AddRazorPages();
         }
 

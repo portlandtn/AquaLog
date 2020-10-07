@@ -55,5 +55,13 @@ namespace AquaLog.Data
             entity.State = EntityState.Modified;
             return updatedLog;
         }
+
+        public IEnumerable<Log> GetAllLogs()
+        {
+            var query = from l in _db.Logs
+                        orderby l.Date
+                        select l;
+            return query;
+        }
     }
 }
