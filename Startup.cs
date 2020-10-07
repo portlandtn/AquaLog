@@ -29,7 +29,7 @@ namespace AquaLog
             {
                 options.UseSqlServer(Configuration["AquaLog:ConnectionString"]);
             });
-            services.AddSingleton<IAquariumData, InMemoryAquariumData>();
+            services.AddScoped<IAquariumData, SqlAquariumData>();
             services.AddRazorPages();
         }
 
