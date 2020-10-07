@@ -9,6 +9,7 @@ namespace AquaLog.Data
         Aquarium GetById(int id);
         Aquarium Update(Aquarium updatedAquarium);
         Aquarium Add(Aquarium newAquarium);
+        Aquarium Delete(int id);
         int Commit();
     }
 }

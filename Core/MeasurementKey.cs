@@ -2,7 +2,7 @@ using System;
 
 namespace AquaLog.Core
 {
-    public class AvailableMeasurements
+    public class MeasurementKey
     {
         public int Id { get; set; }
         public string Name { get; set; }

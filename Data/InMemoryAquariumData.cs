@@ -29,6 +29,16 @@ namespace AquaLog.Data
             return 0;
         }
 
+        public Aquarium Delete(int id)
+        {
+            var aquarium = aquariums.FirstOrDefault(a => a.Id == id);
+            if(aquarium != null)
+            {
+                aquariums.Remove(aquarium);
+            }
+            return aquarium;
+        }
+
         public IEnumerable<Aquarium> GetAquariumsByName(string name)
         {
             return from a in aquariums
