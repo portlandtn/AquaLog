@@ -1,0 +1,21 @@
+﻿@using AquaLog.Core
+@model Aquarium
+
+<div class="card m-2 col-md-4" style="width: 18rem;">
+  <div class="card-body">
+    <h3 class="card-title">@Model.Name</h3>
+    <p class="card-text">@Model.Description</p>
+        <a class="btn btn-primary"
+            asp-page="./AquariumDetails"
+            asp-route-aquariumId="@Model.Id">
+            Details</a>
+        <a class="btn btn-primary"
+            asp-page="./AquariumEdit"
+            asp-route-aquariumId="@Model.Id">
+            Edit</a>
+        <a class="btn btn-primary"
+            asp-page="./AquariumDelete"
+            asp-route-aquariumId="@Model.Id">
+            Delete</a>
+  </div>
+</div>

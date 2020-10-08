@@ -1,0 +1,16 @@
+﻿@page "{logId:int}"
+
+@model LogDelete
+@{
+}
+@{
+    ViewData["Title"] = "Delete";
+}
+<h1>Deleting @Model.Log.Id</h1>
+    <div class="alert alert-danger">
+        Are you sure you want to delete @Model.Log.Id?
+    </div>
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a asp-page="LogList" class="btn btn-secondary">Cancel</a>
+    </form>

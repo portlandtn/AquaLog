@@ -17,32 +17,11 @@
         </div>
     </div>
 </form>
-
-<table class = "table">
-        <tr>
-            <th>Name</th>
-            <th>Capacity</th>
-            <th>Type</th>
-            <th>Description</th>
-        </tr>
-    @foreach (var aquarium in Model.Aquariums)
-    {
-        <tr>
-            <td>@aquarium.Name</td>
-            <td>@aquarium.Capacity gallon</td>
-            @{string type = aquarium.Freshwater ? "Freshwater" : "Saltwater";}
-            <td>@type</td>
-            <td>@aquarium.Description</td>
-            <td>
-                <a class="btn btn-primary"
-                asp-page="./AquariumDetails" asp-route-aquariumId="@aquarium.Id">Details</a>
-                <a class="btn btn-primary"
-                asp-page="./AquariumEdit" asp-route-aquariumId="@aquarium.Id">Edit</a>
-                <a class="btn btn-primary"
-                asp-page="./AquariumDelete" asp-route-aquariumId="@aquarium.Id">Delete</a>
-            </td>
-        </tr>
-    }
-</table>
+<div class="row">
+@foreach(var aquarium in Model.Aquariums)
+{
+    <partial name="_AquariumCards" model="aquarium" />
+}
+</div>
 
 <a asp-page = "./AquariumEdit" class = "btn btn-primary">Add New</a>

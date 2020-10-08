@@ -1,0 +1,16 @@
+﻿@page "{measurementKeyId:int}"
+
+@model MeasurementKeyDelete
+@{
+}
+@{
+    ViewData["Title"] = "Delete";
+}
+<h1>Deleting @Model.MeasurementKey.Name</h1>
+    <div class="alert alert-danger">
+        Are you sure you want to delete @Model.MeasurementKey.Name?
+    </div>
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Yes</button>
+        <a asp-page="MeasurementKeylist" class="btn btn-secondary">Cancel</a>
+    </form>

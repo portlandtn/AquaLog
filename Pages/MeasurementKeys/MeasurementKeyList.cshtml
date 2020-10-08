@@ -17,38 +17,11 @@
         </div>
     </div>
 </form>
-
-<table class = "table">
-        <tr>
-            <th>Name</th>
-            <th>Applicable To Freshwater</th>
-            <th>Applicable To Saltwater</th>
-            <th>Highest Possible Value</th>
-            <th>Lowest Possible Value</th>
-            <th>Ideal Value</th>
-        </tr>
-    @foreach (var measurementKey in Model.MeasurementKeys)
-    {
-        <tr>
-            <td>@measurementKey.Name</td>
-            
-            @{string applicableToFreshwater = measurementKey.ApplicableToFreshwater ? "Yes" : "No";}
-            <td>@applicableToFreshwater</td>
-
-            @{string applicableToSaltwater = measurementKey.ApplicableToSaltwater ? "Yes" : "No";}
-            <td>@applicableToSaltwater</td>
-
-            <td>@measurementKey.HighRange</td>
-            <td>@measurementKey.LowRange</td>
-            <td>@measurementKey.IdealLevel</td>
-            <td>
-                <a class="btn btn-primary"
-                asp-page="./MeasurementKeyDetails" asp-route-measurementKeyId="@measurementKey.Id">Details</a>
-                <a class="btn btn-primary"
-                asp-page="./MeasurementKeyEdit" asp-route-measurementKeyId="@measurementKey.Id">Edit</a>
-            </td>
-        </tr>
-    }
-</table>
+<div class="row">
+@foreach(var measurementKey in Model.MeasurementKeys)
+{
+    <partial name="_MeasurementKeyCards" model="measurementKey" />
+}
+</div>
 
 <a asp-page = "./MeasurementKeyEdit" class = "btn btn-primary">Add New</a>

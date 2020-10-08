@@ -1,0 +1,22 @@
+﻿@using AquaLog.Core
+@model MeasurementKey
+
+<div class="card m-2 col-md-4" style="width: 18rem;">
+  <div class="card-body">
+    <h3 class="card-title">@Model.Name</h3>
+    <p class="card-text">Ideal Level: @Model.IdealLevel</p>
+    <p class="card-text">Range: @Model.LowRange - @Model.HighRange</p>
+        <a class="btn btn-primary"
+            asp-page="./MeasurementKeyDetails"
+            asp-route-MeasurementKeyId="@Model.Id">
+            Details</a>
+        <a class="btn btn-primary"
+            asp-page="./MeasurementKeyEdit"
+            asp-route-MeasurementKeyId="@Model.Id">
+            Edit</a>
+        <a class="btn btn-primary"
+            asp-page="./MeasurementKeyDelete"
+            asp-route-MeasurementKeyId="@Model.Id">
+            Delete</a>
+  </div>
+</div>
