@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace AquaLog.Core
@@ -10,5 +11,7 @@ namespace AquaLog.Core
         public DateTime Date { get; set; }
         [MaxLength(255)]
         public string Notes { get; set; }
+        public virtual ICollection<Measurement> Measurement { get; set; }
+
     }
 }

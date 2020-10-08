@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace AquaLog.Core
@@ -16,5 +17,6 @@ namespace AquaLog.Core
         public double LowRange { get; set; }
         [Required, Range(1, 200)]
         public double IdealLevel { get; set; }
+        public virtual ICollection<Measurement> Measurement { get; set; }
     }
 }

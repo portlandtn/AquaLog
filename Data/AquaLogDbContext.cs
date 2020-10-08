@@ -19,9 +19,31 @@ namespace AquaLog.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Measurement>()
-                .HasKey(m => new { m.AquariumId, m.MeasurementKeyId, m.LogId });
+            modelBuilder.Entity<Measurement>(entity =>
+            {
+                entity.HasOne(a => a.Aquarium)
+                    .WithMany(m => m.Measurement)
+                    .HasForeignKey(a => a.AquariumId)
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .HasConstraintName("FK_Measurement_Aquarium");
+
+                entity.HasOne(mk => mk.MeasurementKey)
+                    .WithMany(m => m.Measurement)
+                    .HasForeignKey(mk => mk.MeasurementKeyId)
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .HasConstraintName("FK_Measurement_MeasurementKey");
+
+                entity.HasOne(l => l.Log)
+                    .WithMany(m => m.Measurement)
+                    .HasForeignKey(l => l.LogId)
+                    .OnDelete(DeleteBehavior.NoAction)
+                    .HasConstraintName("FK_Measurement_Log");
+
+                entity.HasKey(m => new { m.AquariumId, m.MeasurementKeyId, m.LogId });
+            });
+                    
                 
+            
         }
     }
 }

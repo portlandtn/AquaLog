@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace AquaLog.Core
@@ -11,5 +12,7 @@ namespace AquaLog.Core
         public int Capacity { get; set; }
         public bool Freshwater { get; set; }
         public string Description { get; set; }
+        public virtual ICollection<Measurement> Measurement { get; set; }
+
     }
 }
