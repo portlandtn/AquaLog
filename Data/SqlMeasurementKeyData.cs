@@ -54,5 +54,15 @@ namespace AquaLog.Data
             entity.State = EntityState.Modified;
             return updatedMeasurementKey;
         }
+
+        public IEnumerable<MeasurementKey> GetMeasurementKeysByApplicableType(AquariumType aquariumType)
+        {
+            var query = from mk in _db.MeasurementKeys
+                        where (aquariumType == AquariumType.FRESHWATER) ? (mk.ApplicableToFreshwater == true) : (mk.ApplicableToSaltwater == true)
+                        orderby mk.Name
+                        select mk;
+            return query;
+        }
+
     }
 }

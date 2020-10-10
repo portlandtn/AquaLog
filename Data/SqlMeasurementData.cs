@@ -35,16 +35,7 @@ namespace AquaLog.Data
             return measurement;
         }
 
-        public IEnumerable<MeasurementKey> GetMeasurementKeysByName(string name)
-        {
-            var query = from mk in _db.MeasurementKeys
-                        where mk.Name.StartsWith(name) || string.IsNullOrEmpty(name)
-                        orderby mk.Name
-                        select mk;
-            return query;
-        }
-
-        public Measurement GetById(int id)
+        public Measurement GetById(int? id)
         {
             return _db.Measurements.Find(id);
         }
@@ -64,5 +55,6 @@ namespace AquaLog.Data
                         select m;
             return query;
         }
+
     }
 }

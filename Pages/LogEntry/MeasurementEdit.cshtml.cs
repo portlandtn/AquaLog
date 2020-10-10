@@ -12,29 +12,34 @@ namespace AquaLog.Pages.LogEntry
         private readonly ILogger<MeasurementEdit> _logger;
         private readonly IMeasurementData _measurementData;
         private readonly IMeasurementKeyData _measurementKeyData;
+        private readonly IAquariumData _aquariumData;
 
         [BindProperty]
         public Measurement Measurement { get; set; }
         public IEnumerable<MeasurementKey> MeasurementKeys { get; set; }
+        public IEnumerable<Aquarium> Aquariums { get; set; }
 
-        public MeasurementEdit(ILogger<MeasurementEdit> logger, IMeasurementData measurementData, IMeasurementKeyData measurementKeyData)
+        public MeasurementEdit(ILogger<MeasurementEdit> logger, IMeasurementData measurementData, IMeasurementKeyData measurementKeyData, IAquariumData aquariumData)
         {
             _logger = logger;
             _measurementData = measurementData;
             _measurementKeyData = measurementKeyData;
+            _aquariumData = aquariumData;
         }
 
         public IActionResult OnGet(int? measurementId)
         {
-            MeasurementKeys = _measurementKeyData.GetMeasurementKeysByName(null); // will get all measurements
-            
+            Aquariums = _aquariumData.GetAquariumsByName(null);
+
             if (measurementId.HasValue)
             {
-                Measurement = _measurementData.GetById(measurementId.Value);
+                Measurement = _measurementData.GetById(measurementId);
+                MeasurementKeys = _measurementKeyData.GetMeasurementKeysByApplicableType(AquariumType.FRESHWATER);
             }
             else
             {
                 Measurement = new Measurement();
+                MeasurementKeys = _measurementKeyData.GetMeasurementKeysByName(null);
             }
             if (Measurement == null)
             {
@@ -59,7 +64,7 @@ namespace AquaLog.Pages.LogEntry
             }
             _measurementData.Commit();
             TempData["Message"] = "Log Entry saved!";
-            return RedirectToPage("./MeasurementDetails", new { Measurement.LogId , Measurement.AquariumId, Measurement.MeasurementKeyId }); // Post-Redirect-Get pattern to avoid refreshing a post
+            return RedirectToPage("./MeasurementDetails", Measurement.Id); // Post-Redirect-Get pattern to avoid refreshing a post
         }
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace AquaLog.Pages.MeasurementKeys
+namespace AquaLog.Pages.Keys
 {
     public class MeasurementKeyEdit : PageModel
     {

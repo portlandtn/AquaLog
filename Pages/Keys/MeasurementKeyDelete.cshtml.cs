@@ -3,7 +3,7 @@ using AquaLog.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AquaLog.Pages.MeasurementKeys
+namespace AquaLog.Pages.Keys
 {
     public class MeasurementKeyDelete : PageModel
     {

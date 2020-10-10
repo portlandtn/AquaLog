@@ -38,7 +38,9 @@ namespace AquaLog.Data
                     .OnDelete(DeleteBehavior.NoAction)
                     .HasConstraintName("FK_Measurement_Log");
 
-                entity.HasKey(m => new { m.AquariumId, m.MeasurementKeyId, m.LogId });
+                entity.HasIndex(m => new { m.AquariumId, m.MeasurementKeyId, m.LogId }).IsUnique();
+
+                entity.HasKey(m => m.Id);
             });
         }
     }
