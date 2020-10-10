@@ -10,7 +10,6 @@ namespace AquaLog.Data
         public DbSet<Log> Logs { get; set; }
         public DbSet<Measurement> Measurements { get; set; }
 
-
         public AquaLogDbContext(DbContextOptions<AquaLogDbContext> options)
             : base(options)
         {
@@ -41,9 +40,6 @@ namespace AquaLog.Data
 
                 entity.HasKey(m => new { m.AquariumId, m.MeasurementKeyId, m.LogId });
             });
-                    
-                
-            
         }
     }
 }

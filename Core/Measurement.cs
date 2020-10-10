@@ -9,7 +9,7 @@ namespace AquaLog.Core
         public int MeasurementKeyId { get; set; }
         public int AquariumId { get; set; }
         [Required, Range(1, 200)]
-        public double Meaurement { get; set; }
+        public double Value { get; set; }
         public MeasurementKey MeasurementKey { get; set; }
         public Log Log { get; set; }
         public Aquarium Aquarium { get; set; }

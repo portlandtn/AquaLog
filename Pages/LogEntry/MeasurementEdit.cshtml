@@ -1,0 +1,52 @@
+﻿@page "{measurementKeyId:int?, aquariumId:int?, logId:int?}"
+
+@model MeasurementEdit
+@{
+    ViewData["Title"] = "Editing " + Model.Measurement.Aquarium.Name + "on" + Model.Measurement.Log.Date;
+}
+<h1>Editing @Model.Measurement.Aquarium.Name on @Model.Measurement.Log.Date</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Measurement.Aquarium.Id" />
+    <input type="hidden" asp-for="Measurement.MeasurementKey.Id" />
+    <input type="hidden" asp-for="Measurement.Log.Id" />
+    <div class="form-group">
+        <label asp-for="Measurement.Log.Date"></label>
+        <input asp-for="Measurement.Log.Date" class="form-control" />
+        <span class="text-danger" asp-validation-for="Measurement.Log.Date"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
+
+@if(Model.Measurement.Aquarium.Freshwater)
+{
+    @foreach (var measurementKey in Model.MeasurementKeys)
+    {
+        @if(measurementKey.ApplicableToFreshwater)
+        {
+            <div class="form-group">
+                <label asp-for="Measurement.Value"></label>
+                <input asp-for="Measurement.Value" class="form-control" />
+                <span class="text-danger" asp-validation-for="Measurement.Value"></span>
+            </div>
+        }
+    }
+}
+else
+{
+    @foreach (var measurementKey in Model.MeasurementKeys)
+    {
+        @if(measurementKey.ApplicableToSaltwater)
+        {
+            <div class="form-group">
+                <label asp-for="Measurement.Value"></label>
+                <input asp-for="Measurement.Value" class="form-control" />
+                <span class="text-danger" asp-validation-for="Measurement.Value"></span>
+            </div>
+        }
+    }
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

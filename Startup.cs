@@ -32,6 +32,7 @@ namespace AquaLog
             services.AddScoped<IAquariumData, SqlAquariumData>();
             services.AddScoped<IMeasurementKeyData, SqlMeasurementKeyData>();
             services.AddScoped<ILogData, SqlLogData>();
+            services.AddScoped<IMeasurementData, SqlMeasurementData>();
             services.AddRazorPages();
         }
 

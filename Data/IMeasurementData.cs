@@ -4,9 +4,10 @@ using AquaLog.Core;
 
 namespace AquaLog.Data
 {
-    public interface IMeasurement
+    public interface IMeasurementData
     {
-        Measurement GetMeasurementsForRange(DateTime start, DateTime end);
+        IEnumerable<Measurement> GetMeasurementsForRange(DateTime startDate, DateTime endDate);
+        Measurement GetById(int id);
         Measurement Update(Measurement updatedMeasurement);
         Measurement Add(Measurement newMeasurement);
         Measurement Delete(int id);
