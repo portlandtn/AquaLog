@@ -25,9 +25,9 @@ namespace AquaLog.Pages.Keys
             _measurementKeyData = measurementKeyData;
         }
 
-        public IActionResult OnGet(int measurementKeyId)
+        public async Task<IActionResult> OnGet(int measurementKeyId)
         {
-            MeasurementKey = _measurementKeyData.GetById(measurementKeyId);
+            MeasurementKey = await _measurementKeyData.GetById(measurementKeyId);
             if (MeasurementKey == null) 
             {
                 return RedirectToPage("../Error");

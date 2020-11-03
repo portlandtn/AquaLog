@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using AquaLog.Core;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace AquaLog.Data
 {
@@ -13,20 +14,20 @@ namespace AquaLog.Data
         {
             _db = db;
         }
-        public MeasurementKey Add(MeasurementKey newMeasurementKey)
+        public async Task<MeasurementKey> Add(MeasurementKey newMeasurementKey)
         {
-            _db.Add(newMeasurementKey);
+            await _db.AddAsync(newMeasurementKey);
             return newMeasurementKey;
         }
 
-        public int Commit()
+        public async Task<int> Commit()
         {
-            return _db.SaveChanges();
+            return await _db.SaveChangesAsync();
         }
 
-        public MeasurementKey Delete(int id)
+        public async Task<MeasurementKey> Delete(int id)
         {
-            var measurementKey = GetById(id);
+            var measurementKey = await GetById(id);
             if(measurementKey != null)
             {
                 _db.Remove(measurementKey);
@@ -34,33 +35,33 @@ namespace AquaLog.Data
             return measurementKey;
         }
 
-        public IEnumerable<MeasurementKey> GetMeasurementKeysByName(string name)
+        public async Task<IEnumerable<MeasurementKey>> GetMeasurementKeysByName(string name)
         {
-            var query = from mk in _db.MeasurementKeys
+            var query = await Task.FromResult(from mk in _db.MeasurementKeys
                         where mk.Name.StartsWith(name) || string.IsNullOrEmpty(name)
                         orderby mk.Name
-                        select mk;
+                        select mk);
             return query;
         }
 
-        public MeasurementKey GetById(int id)
+        public async Task<MeasurementKey> GetById(int id)
         {
-            return _db.MeasurementKeys.Find(id);
+            return await _db.MeasurementKeys.FindAsync(id);
         }
 
-        public MeasurementKey Update(MeasurementKey updatedMeasurementKey)
+        public async Task<MeasurementKey> Update(MeasurementKey updatedMeasurementKey)
         {
-            var entity = _db.MeasurementKeys.Attach(updatedMeasurementKey);
+            var entity = await Task.FromResult(_db.MeasurementKeys.Attach(updatedMeasurementKey));
             entity.State = EntityState.Modified;
             return updatedMeasurementKey;
         }
 
-        public IEnumerable<MeasurementKey> GetMeasurementKeysByApplicableType(AquariumType aquariumType)
+        public async Task<IEnumerable<MeasurementKey>> GetMeasurementKeysByApplicableType(AquariumType aquariumType)
         {
-            var query = from mk in _db.MeasurementKeys
+            var query = await Task.FromResult(from mk in _db.MeasurementKeys
                         where (aquariumType == AquariumType.FRESHWATER) ? (mk.ApplicableToFreshwater == true) : (mk.ApplicableToSaltwater == true)
                         orderby mk.Name
-                        select mk;
+                        select mk);
             return query;
         }
 

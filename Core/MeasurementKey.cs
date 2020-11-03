@@ -17,6 +17,6 @@ namespace AquaLog.Core
         public double LowRange { get; set; }
         [Required, Range(1, 200)]
         public double IdealLevel { get; set; }
-        public virtual ICollection<Measurement> Measurement { get; set; }
+        public virtual Measurement Measurement { get; set; }
     }
 }

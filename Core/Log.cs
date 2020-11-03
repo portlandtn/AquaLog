@@ -11,7 +11,7 @@ namespace AquaLog.Core
         public DateTime Date { get; set; }
         [MaxLength(255)]
         public string Notes { get; set; }
-        public virtual ICollection<Measurement> Measurement { get; set; }
+        public virtual Measurement Measurement { get; set; }
 
     }
 }

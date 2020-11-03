@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AquaLog.Core;
 using AquaLog.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,8 @@ namespace AquaLog.Pages.LogEntry
         [BindProperty]
         public Measurement Measurement { get; set; }
         public IEnumerable<MeasurementKey> MeasurementKeys { get; set; }
-        public IEnumerable<Aquarium> Aquariums { get; set; }
+        public Aquarium Aquarium { get; set; }
+        public IEnumerable<Aquarium> Aquariums { get; set;}
 
         public MeasurementEdit(ILogger<MeasurementEdit> logger, IMeasurementData measurementData, IMeasurementKeyData measurementKeyData, IAquariumData aquariumData)
         {
@@ -27,19 +29,19 @@ namespace AquaLog.Pages.LogEntry
             _aquariumData = aquariumData;
         }
 
-        public IActionResult OnGet(int? measurementId)
+        public async Task<IActionResult> OnGet(int? measurementId)
         {
-            Aquariums = _aquariumData.GetAquariumsByName(null);
+            Aquariums = await _aquariumData.GetAquariumsByName(null);
 
             if (measurementId.HasValue)
             {
-                Measurement = _measurementData.GetById(measurementId);
-                MeasurementKeys = _measurementKeyData.GetMeasurementKeysByApplicableType(AquariumType.FRESHWATER);
+                Measurement = await _measurementData.GetById(measurementId);
+                MeasurementKeys = await _measurementKeyData.GetMeasurementKeysByApplicableType(AquariumType.FRESHWATER);
             }
             else
             {
                 Measurement = new Measurement();
-                MeasurementKeys = _measurementKeyData.GetMeasurementKeysByName(null);
+                MeasurementKeys = await _measurementKeyData.GetMeasurementKeysByName(null);
             }
             if (Measurement == null)
             {
@@ -47,7 +49,7 @@ namespace AquaLog.Pages.LogEntry
             }
             return Page();
         }
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
             if (!ModelState.IsValid)
             {
@@ -56,13 +58,13 @@ namespace AquaLog.Pages.LogEntry
 
             if (Measurement.LogId > 0)
             {
-                _measurementData.Update(Measurement);
+                await _measurementData.Update(Measurement);
             }
             else
             {
-                _measurementData.Add(Measurement);
+                await _measurementData.Add(Measurement);
             }
-            _measurementData.Commit();
+            await _measurementData.Commit();
             TempData["Message"] = "Log Entry saved!";
             return RedirectToPage("./MeasurementDetails", Measurement.Id); // Post-Redirect-Get pattern to avoid refreshing a post
         }

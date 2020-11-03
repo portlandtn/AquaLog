@@ -1,4 +1,5 @@
-﻿using AquaLog.Core;
+﻿using System.Threading.Tasks;
+using AquaLog.Core;
 using AquaLog.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -14,9 +15,9 @@ namespace AquaLog.Pages.Keys
         {
             _measurementKeyData = measurementKeyData;
         }
-        public IActionResult OnGet(int measurementKeyId)
+        public async Task<IActionResult> OnGet(int measurementKeyId)
         {
-            MeasurementKey = _measurementKeyData.GetById(measurementKeyId);
+            MeasurementKey = await _measurementKeyData.GetById(measurementKeyId);
             if(MeasurementKey == null)
             {
                 return RedirectToPage("./Error");
@@ -24,10 +25,10 @@ namespace AquaLog.Pages.Keys
             return Page();
         }
 
-        public IActionResult OnPost(int measurementKeyId)
+        public async Task<IActionResult> OnPost(int measurementKeyId)
         {
-            var measurementKey = _measurementKeyData.Delete(measurementKeyId);
-            _measurementKeyData.Commit();
+            var measurementKey = await _measurementKeyData.Delete(measurementKeyId);
+            await _measurementKeyData.Commit();
 
             if(measurementKey == null)
             {

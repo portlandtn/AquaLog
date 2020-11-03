@@ -1,4 +1,5 @@
-﻿using AquaLog.Core;
+﻿using System.Threading.Tasks;
+using AquaLog.Core;
 using AquaLog.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -20,11 +21,11 @@ namespace AquaLog.Pages.Aquariums
             _aquariumData = aquariumData;
         }
 
-        public IActionResult OnGet(int? aquariumId)
+        public async Task<IActionResult> OnGet(int? aquariumId)
         {
             if (aquariumId.HasValue)
             {
-                Aquarium = _aquariumData.GetById(aquariumId.Value);
+                Aquarium = await _aquariumData.GetById(aquariumId.Value);
             }
             else
             {
@@ -36,7 +37,7 @@ namespace AquaLog.Pages.Aquariums
             }
             return Page();
         }
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
             if (!ModelState.IsValid)
             {
@@ -45,13 +46,13 @@ namespace AquaLog.Pages.Aquariums
 
             if (Aquarium.Id > 0)
             {
-                _aquariumData.Update(Aquarium);
+                await _aquariumData.Update(Aquarium);
             }
             else
             {
-                _aquariumData.Add(Aquarium);
+                await _aquariumData.Add(Aquarium);
             }
-            _aquariumData.Commit();
+            await _aquariumData.Commit();
             TempData["Message"] = "Aquarium saved!";
             return RedirectToPage("./AquariumDetails", new { aquariumId = Aquarium.Id }); // Post-Redirect-Get pattern to avoid refreshing a post
         }

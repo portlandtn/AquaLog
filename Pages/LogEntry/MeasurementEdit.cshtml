@@ -2,10 +2,9 @@
 
 @model MeasurementEdit
 @{
-    var title = (@Model.Measurement.Aquarium == null) ? "New Log Entry" : "Editing " + Model.Measurement.Aquarium.Name + "on" + Model.Measurement.Log.Date;
-    ViewData["Title"] = title;
+    ViewData["Title"] = (@Model.Measurement.AquariumId == 0) ? "New Log Entry" : "Editing " + Model.Aquarium.Name + " on " + Model.Measurement.Log.Date;
 }
-<h1>@title</h1>
+<h1>@ViewData["Title"]</h1>
 
 <form method="post">
     <input type="hidden" asp-for="Measurement.Id" />
@@ -15,7 +14,7 @@
         <span class="text-danger" asp-validation-for="Measurement.Log.Date"></span>
 
     <div class="form-group">
-        <label asp-for="Measurement.Aquarium.Name">Aquarium</label>
+        <label asp-for="Measurement.AquariumId">Aquarium</label>
         <select class="form-control" asp-for"Measurement.Aquarium.Name">
             @foreach (var aquarium in Model.Aquariums)
             {

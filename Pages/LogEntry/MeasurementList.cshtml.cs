@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using AquaLog.Core;
 using AquaLog.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -19,17 +20,21 @@ namespace AquaLog.Pages.LogEntry
 
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
+        private readonly IMeasurementKeyData _measurementKeyData;
+        private readonly IAquariumData _aquariumData;
 
-        public MeasurementList(ILogger<MeasurementList> logger, IMeasurementData measurementData)
+        public MeasurementList(ILogger<MeasurementList> logger, IMeasurementData measurementData, IAquariumData aquariumData, IMeasurementKeyData measurementKeyData)
         {
+            _aquariumData = aquariumData;
+            _measurementKeyData = measurementKeyData;
             _measurementData = measurementData;
             _logger = logger;
         }
 
-        public void OnGet(DateTime startDate, DateTime endDate)
+        public async Task OnGet(DateTime startDate, DateTime endDate)
         {
             //TODO
-            Measurements = _measurementData.GetMeasurementsForRange(startDate, endDate);
+            Measurements = await _measurementData.GetMeasurementsForRange(startDate, endDate);
         }
     }
 }

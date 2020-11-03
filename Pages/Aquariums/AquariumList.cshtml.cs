@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AquaLog.Core;
 using AquaLog.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -22,9 +23,9 @@ namespace AquaLog.Pages.Aquariums
             _logger = logger;
         }
 
-        public void OnGet()
+        public async Task OnGet()
         {
-            Aquariums = _aquariumData.GetAquariumsByName(SearchTerm);
+            Aquariums = await _aquariumData.GetAquariumsByName(SearchTerm);
         }
     }
 }

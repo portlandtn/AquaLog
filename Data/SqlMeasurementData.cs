@@ -3,6 +3,7 @@ using AquaLog.Core;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Threading.Tasks;
 
 namespace AquaLog.Data
 {
@@ -14,20 +15,20 @@ namespace AquaLog.Data
         {
             _db = db;
         }
-        public Measurement Add(Measurement newMeasurement)
+        public async Task<Measurement> Add(Measurement newMeasurement)
         {
-            _db.Add(newMeasurement);
+            await _db.AddAsync(newMeasurement);
             return newMeasurement;
         }
 
-        public int Commit()
+        public async Task<int> Commit()
         {
-            return _db.SaveChanges();
+            return await _db.SaveChangesAsync();
         }
 
-        public Measurement Delete(int id)
+        public async Task<Measurement> Delete(int id)
         {
-            var measurement = GetById(id);
+            var measurement = await GetById(id);
             if(measurement != null)
             {
                 _db.Remove(measurement);
@@ -35,24 +36,24 @@ namespace AquaLog.Data
             return measurement;
         }
 
-        public Measurement GetById(int? id)
+        public async Task<Measurement> GetById(int? id)
         {
-            return _db.Measurements.Find(id);
+            return await _db.Measurements.FindAsync(id);
         }
 
-        public Measurement Update(Measurement updatedMeasurement)
+        public async Task<Measurement> Update(Measurement updatedMeasurement)
         {
-            var entity = _db.Measurements.Attach(updatedMeasurement);
+            var entity = await Task.FromResult(_db.Measurements.Attach(updatedMeasurement));
             entity.State = EntityState.Modified;
             return updatedMeasurement;
         }
 
-        public IEnumerable<Measurement> GetMeasurementsForRange(DateTime startDate, DateTime endDate)
+        public async Task<IEnumerable<Measurement>> GetMeasurementsForRange(DateTime startDate, DateTime endDate)
         {
-            var query = from m in _db.Measurements
+            var query = await Task.FromResult(from m in _db.Measurements
                         where (m.Log.Date >= startDate && m.Log.Date <= endDate)
                         orderby m.Log.Date
-                        select m;
+                        select m);
             return query;
         }
 

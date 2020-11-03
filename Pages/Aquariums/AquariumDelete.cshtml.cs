@@ -19,9 +19,9 @@ namespace AquaLog.Pages.Aquariums
         {
             _aquariumData = aquariumData;
         }
-        public IActionResult OnGet(int aquariumId)
+        public async Task<IActionResult> OnGet(int aquariumId)
         {
-            Aquarium = _aquariumData.GetById(aquariumId);
+            Aquarium = await _aquariumData.GetById(aquariumId);
             if(Aquarium == null)
             {
                 return RedirectToPage("./Error");
@@ -29,10 +29,10 @@ namespace AquaLog.Pages.Aquariums
             return Page();
         }
 
-        public IActionResult OnPost(int aquariumId)
+        public async Task<IActionResult> OnPost(int aquariumId)
         {
-            var aquarium = _aquariumData.Delete(aquariumId);
-            _aquariumData.Commit();
+            var aquarium = await _aquariumData.Delete(aquariumId);
+            await _aquariumData.Commit();
 
             if(aquarium == null)
             {

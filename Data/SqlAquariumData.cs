@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using AquaLog.Core;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace AquaLog.Data
 {
@@ -13,20 +14,20 @@ namespace AquaLog.Data
         {
             _db = db;
         }
-        public Aquarium Add(Aquarium newAquarium)
+        public async Task<Aquarium> Add(Aquarium newAquarium)
         {
-            _db.Add(newAquarium);
+            await _db.AddAsync(newAquarium);
             return newAquarium;
         }
 
-        public int Commit()
+        public async Task<int> Commit()
         {
-            return _db.SaveChanges();
+            return await _db.SaveChangesAsync();
         }
 
-        public Aquarium Delete(int id)
+        public async Task<Aquarium> Delete(int id)
         {
-            var aquarium = GetById(id);
+            var aquarium = await GetById(id);
             if(aquarium != null)
             {
                 _db.Remove(aquarium);
@@ -34,23 +35,23 @@ namespace AquaLog.Data
             return aquarium;
         }
 
-        public IEnumerable<Aquarium> GetAquariumsByName(string name)
+        public async Task<IEnumerable<Aquarium>> GetAquariumsByName(string name)
         {
-            var query = from a in _db.Aquariums
+            var query = await Task.FromResult(from a in _db.Aquariums
                         where a.Name.StartsWith(name) || string.IsNullOrEmpty(name)
                         orderby a.Name
-                        select a;
+                        select a);
             return query;
         }
 
-        public Aquarium GetById(int id)
+        public async Task<Aquarium> GetById(int id)
         {
-            return _db.Aquariums.Find(id);
+            return await _db.Aquariums.FindAsync(id);
         }
 
-        public Aquarium Update(Aquarium updatedAquarium)
+        public async Task<Aquarium> Update(Aquarium updatedAquarium)
         {
-            var entity = _db.Aquariums.Attach(updatedAquarium);
+            var entity = await Task.FromResult(_db.Aquariums.Attach(updatedAquarium));
             entity.State = EntityState.Modified;
             return updatedAquarium;
         }

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace AquaLog.Data
 {
-    public class InMemoryAquariumData : IAquariumData
+    public class InMemoryAquariumData //: IAquariumData
     {
         List<Aquarium> aquariums;
 
