@@ -12,15 +12,15 @@ namespace AquaLog.Data
         {
             aquariums = new List<Aquarium>()
             {
-                new Aquarium {Id = 1, Name = "20 Gallon Fresh", Capacity = 20, Freshwater = true, Description = "20 Gallon tank against the wall with the skull" },
-                new Aquarium {Id = 2, Name = "Big Saltwater", Capacity = 55, Freshwater = false, Description = "55 Gallon tank with the trigger shrimp" }
+                new Aquarium {AquariumId = 1, Name = "20 Gallon Fresh", Capacity = 20, Type = AquariumType.FRESHWATER, Description = "20 Gallon tank against the wall with the skull" },
+                new Aquarium {AquariumId = 2, Name = "Big Saltwater", Capacity = 55, Type = AquariumType.SALTWATER, Description = "55 Gallon tank with the trigger shrimp" }
             };
         }
 
         public Aquarium Add(Aquarium newAquarium)
         {
             aquariums.Add(newAquarium);
-            newAquarium.Id = aquariums.Max(a => a.Id + 1);
+            newAquarium.AquariumId = aquariums.Max(a => a.AquariumId + 1);
             return newAquarium;
         }
 
@@ -31,7 +31,7 @@ namespace AquaLog.Data
 
         public Aquarium Delete(int id)
         {
-            var aquarium = aquariums.FirstOrDefault(a => a.Id == id);
+            var aquarium = aquariums.FirstOrDefault(a => a.AquariumId == id);
             if(aquarium != null)
             {
                 aquariums.Remove(aquarium);
@@ -49,17 +49,17 @@ namespace AquaLog.Data
 
         public Aquarium GetById(int id)
         {
-            return aquariums.SingleOrDefault(r => r.Id == id);
+            return aquariums.SingleOrDefault(r => r.AquariumId == id);
         }
 
         public Aquarium Update(Aquarium updatedAquarium)
         {
-            var aquarium = aquariums.SingleOrDefault(a => a.Id == updatedAquarium.Id);
+            var aquarium = aquariums.SingleOrDefault(a => a.AquariumId == updatedAquarium.AquariumId);
             if (aquarium != null)
             {
                 aquarium.Name = updatedAquarium.Name;
                 aquarium.Capacity = updatedAquarium.Capacity;
-                aquarium.Freshwater = updatedAquarium.Freshwater;
+                aquarium.Type = updatedAquarium.Type;
                 aquarium.Description = updatedAquarium.Description;
             }
             return aquarium;

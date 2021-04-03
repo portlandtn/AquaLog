@@ -44,7 +44,7 @@ namespace AquaLog.Pages.Keys
                 return Page();
             }
 
-            if (MeasurementKey.Id > 0)
+            if (MeasurementKey.MeasurementKeyId > 0)
             {
                 await _measurementKeyData.Update(MeasurementKey);
             }
@@ -54,7 +54,7 @@ namespace AquaLog.Pages.Keys
             }
             await _measurementKeyData.Commit();
             TempData["Message"] = "Measurement Key saved!";
-            return RedirectToPage("./MeasurementKeyDetails", new { measurementKeyId = MeasurementKey.Id }); // Post-Redirect-Get pattern to avoid refreshing a post
+            return RedirectToPage("./MeasurementKeyDetails", new { measurementKeyId = MeasurementKey.MeasurementKeyId }); // Post-Redirect-Get pattern to avoid refreshing a post
         }
 
     }

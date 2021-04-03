@@ -3,15 +3,17 @@ using System;
 using AquaLog.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AquaLog.Migrations
 {
     [DbContext(typeof(AquaLogDbContext))]
-    partial class AquaLogDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210403230445_UpdatePrimaryKeys")]
+    partial class UpdatePrimaryKeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

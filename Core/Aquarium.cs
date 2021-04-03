@@ -5,15 +5,16 @@ namespace AquaLog.Core
 {
     public class Aquarium
     {
-        public int Id { get; set; }
+        [Key]
+        public int AquariumId { get; set; }
 
         [Required, StringLength(255)]
         public string Name { get; set; }
 
         [Required, Range(1,500)]
         public int Capacity { get; set; }
-        public bool Freshwater { get; set; }
+        public AquariumType Type { get; set; }
         public string Description { get; set; }
-        public virtual ICollection<Measurement> Measurements { get; set; }
+        public virtual ICollection<Log> Logs { get; set; }
     }
 }

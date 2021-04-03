@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AquaLog.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,9 +20,9 @@ namespace AquaLog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextPool<AquaLogDbContext>(options =>
+            services.AddDbContext<AquaLogDbContext>(options =>
             {
-                options.UseSqlServer(Configuration["AquaLog:ConnectionString"]);
+                options.UseNpgsql(Configuration.GetConnectionString("AquaLog"));
             });
             services.AddScoped<IAquariumData, SqlAquariumData>();
             services.AddScoped<IMeasurementKeyData, SqlMeasurementKeyData>();

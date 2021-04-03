@@ -43,7 +43,7 @@ namespace AquaLog.Pages.Logs
                 return Page();
             }
 
-            if (Log.Id > 0)
+            if (Log.LogId > 0)
             {
                 _logData.Update(Log);
             }
@@ -53,7 +53,7 @@ namespace AquaLog.Pages.Logs
             }
             _logData.Commit();
             TempData["Message"] = "Log saved!";
-            return RedirectToPage("./LogDetails", new { logId = Log.Id }); // Post-Redirect-Get pattern to avoid refreshing a post
+            return RedirectToPage("./LogDetails", new { logId = Log.LogId }); // Post-Redirect-Get pattern to avoid refreshing a post
         }
 
     }

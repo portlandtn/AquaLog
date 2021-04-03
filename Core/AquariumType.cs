@@ -1,4 +1,4 @@
-namespace AquaLog.Data
+namespace AquaLog.Core
 {
     public enum AquariumType
     {

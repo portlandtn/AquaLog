@@ -6,12 +6,14 @@ namespace AquaLog.Core
 {
     public class Log
     {
-        public int Id { get; set; }
+        [Key]
+        public int LogId { get; set; }
         [Required]
         public DateTime Date { get; set; }
-        [MaxLength(255)]
+        [Required]
+        public int AquariumId { get; set; }
         public string Notes { get; set; }
-        public virtual Measurement Measurement { get; set; }
-
+        public virtual Aquarium Aquarium { get; set; }
+        public virtual ICollection<Measurement> Measurement { get; set; }
     }
 }

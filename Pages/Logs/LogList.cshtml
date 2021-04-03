@@ -14,14 +14,14 @@
     @foreach (var log in Model.Logs)
     {
         <tr>
-            <td>@log.Id</td>
+            <td>@log.LogId</td>
             <td>@log.Date</td>
             <td>@log.Notes</td>
             <td>
                 <a class="btn btn-primary"
-                asp-page="./LogDetails" asp-route-logId="@log.Id">Details</a>
+                asp-page="./LogDetails" asp-route-logId="@log.LogId">Details</a>
                 <a class="btn btn-primary"
-                asp-page="./LogEdit" asp-route-logId="@log.Id">Edit</a>
+                asp-page="./LogEdit" asp-route-logId="@log.LogId">Edit</a>
             </td>
         </tr>
     }

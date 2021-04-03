@@ -7,37 +7,11 @@
 <h1>Editing @Model.MeasurementKey.Name</h1>
 
 <form method="post">
-    <input type="hidden" asp-for="MeasurementKey.Id" />
+    <input type="hidden" asp-for="MeasurementKey.MeasurementKeyId" />
     <div class="form-group">
         <label asp-for="MeasurementKey.Name"></label>
         <input asp-for="MeasurementKey.Name" class="form-control" />
         <span class="text-danger" asp-validation-for="MeasurementKey.Name"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="MeasurementKey.ApplicableToFreshwater">Applicable To Freshwater</label>
-        <select class="form-control" asp-for="MeasurementKey.ApplicableToFreshwater">
-            <option value="True">Yes</option>
-            <option value="False">No</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label asp-for="MeasurementKey.ApplicableToSaltwater">Applicable To Saltwater</label>
-        <select class="form-control" asp-for="MeasurementKey.ApplicableToSaltwater">
-            <option value="True">Yes</option>
-            <option value="False">No</option>
-        </select>
-    </div>
-    <div class ="form-group">
-        <label asp-for="MeasurementKey.LowRange"></label>
-        <input asp-for="MeasurementKey.LowRange" class="form-control" />
-    </div>
-    <div class ="form-group">
-        <label asp-for="MeasurementKey.HighRange"></label>
-        <input asp-for="MeasurementKey.HighRange" class="form-control" />
-    </div>
-    <div class ="form-group">
-        <label asp-for="MeasurementKey.IdealLevel"></label>
-        <input asp-for="MeasurementKey.IdealLevel" class="form-control" />
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
 </form>

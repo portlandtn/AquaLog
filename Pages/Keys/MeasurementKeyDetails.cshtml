@@ -9,20 +9,3 @@
     <div class="alert- alert-info">@Model.Message</div>
 }
 <h1>@Model.MeasurementKey.Name</h1>
-<div>
-    @{var applicableToFreshwater = Model.MeasurementKey.ApplicableToFreshwater ? "Yes" : "No"; }
-    Applicable To Freshwater: @applicableToFreshwater
-</div>
-<div>
-    @{var applicableToSaltwater = Model.MeasurementKey.ApplicableToSaltwater ? "Yes" : "No"; }
-    Applicable To Saltwater: @applicableToSaltwater
-</div>
-<div>
-    Highest Possible Value: @Model.MeasurementKey.HighRange
-</div>
-<div>
-    Lowest Possible Value: @Model.MeasurementKey.LowRange
-</div>
-<div>
-    Ideal Value: @Model.MeasurementKey.IdealLevel
-</div>

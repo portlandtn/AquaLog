@@ -2,12 +2,12 @@
 
 @model LogEdit
 @{
-    ViewData["Title"] = "Editing " + Model.Log.Id;
+    ViewData["Title"] = "Editing " + Model.Log.LogId;
 }
-<h1>Editing @Model.Log.Id</h1>
+<h1>Editing @Model.Log.LogId</h1>
 
 <form method="post">
-    <input type="hidden" asp-for="Log.Id" />
+    <input type="hidden" asp-for="Log.LogId" />
     <div class="form-group">
         <label asp-for="Log.Date"></label>
         <input asp-for="Log.Date" class="form-control" />
