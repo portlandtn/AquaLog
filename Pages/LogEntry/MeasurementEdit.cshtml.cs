@@ -36,7 +36,7 @@ namespace AquaLog.Pages.LogEntry
             if (measurementId.HasValue)
             {
                 Measurement = await _measurementData.GetById(measurementId);
-                MeasurementKeys = await _measurementKeyData.GetMeasurementKeysByApplicableType(AquariumType.FRESHWATER);
+                //MeasurementKeys = await _measurementKeyData.GetMeasurementKeysByApplicableType(AquariumType.FRESHWATER);
             }
             else
             {
@@ -66,7 +66,7 @@ namespace AquaLog.Pages.LogEntry
             }
             await _measurementData.Commit();
             TempData["Message"] = "Log Entry saved!";
-            return RedirectToPage("./MeasurementDetails", Measurement.Id); // Post-Redirect-Get pattern to avoid refreshing a post
+            return RedirectToPage("./MeasurementDetails", Measurement.MeasurementId); // Post-Redirect-Get pattern to avoid refreshing a post
         }
     }
 }

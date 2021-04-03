@@ -39,7 +39,7 @@ namespace AquaLog.Data
         {
             var query = from l in _db.Logs
                         where (l.Date >= startDate && l.Date <= endDate)
-                        orderby l.Id
+                        orderby l.LogId
                         select l;
             return query;
         }

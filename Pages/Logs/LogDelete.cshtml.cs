@@ -38,7 +38,7 @@ namespace AquaLog.Pages.Logs
             {
                 return RedirectToPage("./Error");
             }
-            TempData["Message"] = $"{log.Id} deleted.";
+            TempData["Message"] = $"{log.LogId} deleted.";
             return RedirectToPage("./LogList");
         }
     }

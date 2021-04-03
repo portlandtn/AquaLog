@@ -2,7 +2,7 @@
 
 namespace AquaLog.Migrations
 {
-    public partial class addIndexToIdKeys : Migration
+    public partial class UpdatePrimaryKeys : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
